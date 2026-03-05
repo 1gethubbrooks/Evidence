@@ -39,11 +39,12 @@ html, body { height: 100%; font-family: 'EB Garamond', Georgia, serif; backgroun
 
 /* Speech bubble */
 #speech-bubble { position:absolute; z-index:10; background:var(--cream); border:2px solid var(--brass); border-radius:6px; padding:7px 13px; max-width:210px; font-family:'Special Elite',monospace; font-size:0.7rem; color:var(--ink); line-height:1.45; opacity:0; transition:opacity 0.35s ease,transform 0.35s ease; pointer-events:none; box-shadow:0 4px 18px rgba(0,0,0,0.55); }
-#speech-bubble.judge-pos { top:40px; left:50%; transform:translateX(-50%) translateY(-8px); }
+#speech-bubble.judge-pos { top:115px; left:50%; transform:translateX(-50%) translateY(-8px); }
 #speech-bubble.witness-pos { top:72px; right:7%; transform:translateY(-8px); }
 #speech-bubble.show.judge-pos { opacity:1; transform:translateX(-50%) translateY(0); }
 #speech-bubble.show.witness-pos { opacity:1; transform:translateY(0); }
-#speech-bubble::after { content:''; position:absolute; bottom:-9px; left:50%; transform:translateX(-50%); border:5px solid transparent; border-top-color:var(--brass); }
+#speech-bubble.judge-pos::after { content:''; position:absolute; top:-9px; bottom:auto; left:50%; transform:translateX(-50%); border:5px solid transparent; border-bottom-color:var(--brass); }
+#speech-bubble.witness-pos::after { content:''; position:absolute; bottom:-9px; left:50%; transform:translateX(-50%); border:5px solid transparent; border-top-color:var(--brass); }
 
 /* BOTTOM PANEL */
 #bottom-panel { padding:14px 18px 28px; background:linear-gradient(180deg,#0e0804 0%,#140c06 100%); }
@@ -91,14 +92,41 @@ html, body { height: 100%; font-family: 'EB Garamond', Georgia, serif; backgroun
 #next-btn:hover { filter:brightness(1.1); transform:translateY(-1px); }
 #next-btn.show { display:block; }
 
+/* INTRO SCREEN */
+#intro-screen { display:none; padding:36px 22px 60px; background:linear-gradient(180deg,#0e0804,#140c06); min-height:100vh; }
+#intro-screen.show { display:block; }
+.intro-title { font-family:'Special Elite',monospace; font-size:1.3rem; color:var(--brass-bright); letter-spacing:0.1em; text-transform:uppercase; text-align:center; margin-bottom:4px; }
+.intro-sub { font-size:0.82rem; color:var(--parchment-mid); font-style:italic; text-align:center; margin-bottom:24px; }
+.intro-section-label { font-family:'Special Elite',monospace; font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--brass); margin-bottom:10px; border-bottom:1px solid rgba(154,114,48,0.3); padding-bottom:5px; }
+#topic-checklist { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:8px; margin-bottom:20px; }
+.topic-check { display:flex; align-items:flex-start; gap:10px; background:rgba(255,255,255,0.03); border:1px solid rgba(154,114,48,0.25); border-radius:3px; padding:10px 12px; cursor:pointer; transition:all 0.15s; }
+.topic-check:hover { border-color:var(--brass); background:rgba(154,114,48,0.06); }
+.topic-check input[type=checkbox] { margin-top:2px; accent-color:var(--brass-bright); width:14px; height:14px; flex-shrink:0; cursor:pointer; }
+.topic-check-label { font-family:'Special Elite',monospace; font-size:0.68rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--parchment); line-height:1.5; }
+.topic-check-label span { display:block; font-family:'EB Garamond',serif; font-style:italic; font-size:0.78rem; text-transform:none; letter-spacing:0; color:var(--brass); margin-top:1px; }
+.intro-controls { display:flex; gap:10px; align-items:center; margin-bottom:14px; flex-wrap:wrap; }
+.select-all-btn { background:none; border:1px solid var(--brass); color:var(--brass); font-family:'Special Elite',monospace; font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase; padding:5px 12px; border-radius:2px; cursor:pointer; transition:all 0.15s; }
+.select-all-btn:hover { background:rgba(154,114,48,0.15); }
+#intro-count { font-size:0.75rem; color:var(--parchment-mid); font-style:italic; }
+#start-btn { width:100%; background:linear-gradient(135deg,var(--brass),var(--brass-bright)); color:var(--ink); border:none; border-radius:3px; padding:14px; font-family:'Special Elite',monospace; font-size:0.9rem; letter-spacing:0.14em; text-transform:uppercase; cursor:pointer; transition:all 0.2s; box-shadow:0 3px 14px rgba(0,0,0,0.5); margin-top:8px; }
+#start-btn:hover { filter:brightness(1.1); transform:translateY(-1px); }
+#start-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none; filter:none; }
+
 /* END */
-#end-screen { display:none; padding:40px 24px 60px; text-align:center; background:linear-gradient(180deg,#0e0804,#140c06); min-height:100vh; }
+#end-screen { display:none; padding:36px 22px 60px; background:linear-gradient(180deg,#0e0804,#140c06); min-height:100vh; }
 #end-screen.show { display:block; }
-.end-gavel { font-size:3.5rem; margin-bottom:14px; }
-.end-title { font-family:'Special Elite',monospace; font-size:1.4rem; color:var(--brass-bright); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; }
-.end-score { font-size:4rem; font-weight:700; color:var(--cream); line-height:1; margin:10px 0; }
-.end-verdict { font-size:0.9rem; color:var(--parchment-mid); font-style:italic; max-width:480px; margin:0 auto 28px; line-height:1.7; }
-.restart-btn { background:linear-gradient(135deg,var(--brass),var(--brass-bright)); color:var(--ink); border:none; padding:13px 40px; font-family:'Special Elite',monospace; font-size:0.88rem; letter-spacing:0.14em; text-transform:uppercase; cursor:pointer; border-radius:3px; transition:all 0.2s; }
+.end-gavel { font-size:3.5rem; margin-bottom:14px; text-align:center; }
+.end-title { font-family:'Special Elite',monospace; font-size:1.4rem; color:var(--brass-bright); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; text-align:center; }
+.end-score { font-size:4rem; font-weight:700; color:var(--cream); line-height:1; margin:10px 0; text-align:center; }
+.end-verdict { font-size:0.9rem; color:var(--parchment-mid); font-style:italic; max-width:480px; margin:0 auto 28px; line-height:1.7; text-align:center; }
+.missed-section { background:rgba(255,255,255,0.03); border:1.5px solid rgba(204,68,68,0.35); border-radius:3px; padding:16px 18px; margin-bottom:22px; text-align:left; }
+.missed-section-title { font-family:'Special Elite',monospace; font-size:0.65rem; letter-spacing:0.16em; text-transform:uppercase; color:#cc6666; margin-bottom:12px; }
+.missed-rule-item { margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.06); }
+.missed-rule-item:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+.missed-rule-name { font-family:'Special Elite',monospace; font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; color:#ffbbbb; margin-bottom:3px; }
+.missed-rule-cite { font-size:0.78rem; color:#c8b888; line-height:1.55; }
+.missed-rule-cite strong { color:var(--brass-bright); }
+.restart-btn { display:block; width:100%; background:linear-gradient(135deg,var(--brass),var(--brass-bright)); color:var(--ink); border:none; padding:13px 40px; font-family:'Special Elite',monospace; font-size:0.88rem; letter-spacing:0.14em; text-transform:uppercase; cursor:pointer; border-radius:3px; transition:all 0.2s; text-align:center; }
 .restart-btn:hover { filter:brightness(1.1); transform:translateY(-1px); }
 </style>
 </head>
@@ -107,13 +135,27 @@ html, body { height: 100%; font-family: 'EB Garamond', Georgia, serif; backgroun
 <div id="hud">
   <div id="hud-title">⚖ Objection Simulator · Law 410</div>
   <div class="hud-score">
-    <div class="hud-pip"><div class="lbl">Sustained</div><div class="val" id="scoreCorrect">0</div></div>
-    <div class="hud-pip"><div class="lbl">Overruled</div><div class="val" id="scoreWrong">0</div></div>
+    <div class="hud-pip"><div class="lbl">Correct</div><div class="val" id="scoreCorrect">0</div></div>
+    <div class="hud-pip"><div class="lbl">Incorrect</div><div class="val" id="scoreWrong">0</div></div>
   </div>
 </div>
 <div id="progress-bar-wrap"><div id="progress-bar-fill" style="width:0%"></div></div>
 
-<div id="game-area">
+<!-- INTRO SCREEN -->
+<div id="intro-screen" class="show">
+  <div class="intro-title">⚖ Objection Simulator</div>
+  <div class="intro-sub">Select the Federal Rules of Evidence topics you want to practice</div>
+  <div class="intro-section-label">Choose Your Topics</div>
+  <div class="intro-controls">
+    <button class="select-all-btn" onclick="selectAll(true)">Select All</button>
+    <button class="select-all-btn" onclick="selectAll(false)">Clear All</button>
+    <span id="intro-count"></span>
+  </div>
+  <div id="topic-checklist"></div>
+  <button id="start-btn" onclick="beginSession()" disabled>Begin Session</button>
+</div>
+
+<div id="game-area" style="display:none;">
   <!-- IMMERSIVE COURTROOM SCENE -->
   <div id="scene-wrap">
     <svg id="courtroom-svg" viewBox="0 0 900 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -240,6 +282,9 @@ html, body { height: 100%; font-family: 'EB Garamond', Georgia, serif; backgroun
       <!-- ── WITNESS CHARACTER (drawn by JS) ── -->
       <g id="witness-group"></g>
 
+      <!-- ── BAILIFF CHARACTER (drawn by JS) ── -->
+      <g id="bailiff-group"></g>
+
       <!-- ── FLOOR ── -->
       <rect x="0" y="205" width="900" height="78" fill="url(#floorG)"/>
       <!-- Perspective floor lines -->
@@ -320,7 +365,11 @@ html, body { height: 100%; font-family: 'EB Garamond', Georgia, serif; backgroun
   <div class="end-title">Court Adjourned</div>
   <div class="end-score" id="end-score">0/10</div>
   <div class="end-verdict" id="end-verdict"></div>
-  <button class="restart-btn" onclick="restartGame()">Retake the Stand</button>
+  <div class="missed-section" id="missed-section" style="display:none;">
+    <div class="missed-section-title">📚 Rules to Review</div>
+    <div id="missed-rules-list"></div>
+  </div>
+  <button class="restart-btn" onclick="showIntro()">Choose New Topics</button>
 </div>
 
 <script>
@@ -417,8 +466,8 @@ const scenarios = [
   }
 ];
 
-let shuffled=[], current=0, correct=0, wrong=0, streak=0, answered=false;
-const TOTAL = scenarios.length;
+let shuffled=[], current=0, correct=0, wrong=0, streak=0, answered=false, missedScenarios=[], activeScenarios=[];
+let TOTAL = 0;
 
 const judgeLines = {
   start:  ["Counselor, proceed. We're ready for your objection.","The witness is on the stand. Make your record.","Court is in session. Choose your objection carefully.","I'm waiting, counselor."],
@@ -446,6 +495,7 @@ function loadScenario(){
   const s=shuffled[current];
   document.getElementById('progress-bar-fill').style.width=(current/TOTAL*100)+'%';
   document.getElementById('topic-badge').textContent=s.topic;
+  document.getElementById('topic-badge').style.visibility='hidden';
   document.getElementById('case-num').textContent=`Case No. ${s.caseNum} · Q${current+1}/${TOTAL}`;
   document.getElementById('streak-row').textContent='';
   document.getElementById('ruling-panel').classList.remove('show');
@@ -463,7 +513,7 @@ function loadScenario(){
   let grid='';
   opts.forEach(opt=>{
     const safe=opt.replace(/'/g,"\\'");
-    grid+=`<button class="obj-btn" onclick="handleObj(this,'${safe}')">${opt}<span class="rule-tag">${s.rules[opt]||''}</span></button>`;
+    grid+=`<button class="obj-btn" onclick="handleObj(this,'${safe}')">${opt}<span class="rule-tag" style="visibility:hidden">${s.rules[opt]||''}</span></button>`;
   });
   document.getElementById('obj-grid').innerHTML=grid;
 }
@@ -473,13 +523,16 @@ function handleObj(btn,selected){
   answered=true;
   const s=shuffled[current];
   const ok=selected===s.correct;
+  // Reveal rule tags and topic badge now that question is answered
+  document.querySelectorAll('.obj-btn .rule-tag').forEach(t=>t.style.visibility='visible');
+  document.getElementById('topic-badge').style.visibility='visible';
   document.querySelectorAll('.obj-btn').forEach(b=>{
     if(b.childNodes[0].textContent.trim()===s.correct)b.classList.add('reveal');
   });
   btn.classList.remove('reveal');
   btn.classList.add(ok?'correct':'incorrect');
   if(ok){correct++;streak++;document.getElementById('scoreCorrect').textContent=correct;}
-  else{wrong++;streak=0;document.getElementById('scoreWrong').textContent=wrong;}
+  else{wrong++;streak=0;document.getElementById('scoreWrong').textContent=wrong; missedScenarios.push(s);}
   if(streak>=2)document.getElementById('streak-row').textContent=`🔥 ${streak}-Objection Streak`;
   let line;
   if(streak>=5)line=judgeLines.streak5;
@@ -511,23 +564,81 @@ function showEnd(){
   document.getElementById('end-score').textContent=`${correct}/${TOTAL}`;
   const pct=correct/TOTAL;
   let v;
-  if(pct===1)v="Perfect score. The bench would be proud. You know the Federal Rules cold.";
+  if(pct===1)v="Perfect score. The bench would be proud. You know these rules cold.";
   else if(pct>=0.8)v="Excellent command of the FRE. Review the few rules you missed and you'll be untouchable.";
-  else if(pct>=0.6)v="Solid showing, counselor. Hearsay exceptions and character evidence distinctions need more attention.";
-  else if(pct>=0.4)v="Keep studying. Focus on FRE 401–403, 404, and 801–804. You'll get there.";
-  else v="The judge is concerned. Hit the textbook — especially relevance, character evidence, and hearsay.";
+  else if(pct>=0.6)v="Solid showing, counselor. A few distinctions need more attention.";
+  else if(pct>=0.4)v="Keep studying. Focus on the rules listed below.";
+  else v="The judge is concerned. Hit the textbook — pay special attention to the rules below.";
   document.getElementById('end-verdict').textContent=v;
+  // Build missed rules summary
+  if(missedScenarios.length>0){
+    const seen=new Set();
+    let html='';
+    missedScenarios.forEach(s=>{
+      const key=s.correct+'|'+s.topic;
+      if(!seen.has(key)){
+        seen.add(key);
+        html+=`<div class="missed-rule-item"><div class="missed-rule-name">${s.topic}</div><div class="missed-rule-cite">${s.ruleText}</div></div>`;
+      }
+    });
+    document.getElementById('missed-rules-list').innerHTML=html;
+    document.getElementById('missed-section').style.display='block';
+  } else {
+    document.getElementById('missed-section').style.display='none';
+  }
+}
+
+function showIntro(){
+  document.getElementById('end-screen').classList.remove('show');
+  document.getElementById('game-area').style.display='none';
+  document.getElementById('intro-screen').classList.add('show');
+  updateIntroCount();
 }
 
 function restartGame(){
-  shuffled=shuffle(scenarios);
-  current=0;correct=0;wrong=0;streak=0;answered=false;
+  shuffled=shuffle(activeScenarios);
+  TOTAL=shuffled.length;
+  current=0;correct=0;wrong=0;streak=0;answered=false;missedScenarios=[];
   document.getElementById('scoreCorrect').textContent=0;
   document.getElementById('scoreWrong').textContent=0;
   document.getElementById('game-area').style.display='block';
   document.getElementById('end-screen').classList.remove('show');
   window.scrollTo({top:0});
   loadScenario();
+}
+
+// ── INTRO LOGIC ──
+function buildIntroScreen(){
+  const list=document.getElementById('topic-checklist');
+  list.innerHTML='';
+  scenarios.forEach((s,i)=>{
+    const div=document.createElement('div');
+    div.className='topic-check';
+    div.innerHTML=`<input type="checkbox" id="tc${i}" value="${i}" checked onchange="updateIntroCount()">
+      <label class="topic-check-label" for="tc${i}">${s.topic}<span>${s.question.replace(/"/g,'&quot;')}</span></label>`;
+    list.appendChild(div);
+  });
+  updateIntroCount();
+}
+
+function updateIntroCount(){
+  const checked=document.querySelectorAll('#topic-checklist input:checked').length;
+  document.getElementById('intro-count').textContent=`${checked} question${checked!==1?'s':''} selected`;
+  document.getElementById('start-btn').disabled=checked===0;
+}
+
+function selectAll(val){
+  document.querySelectorAll('#topic-checklist input').forEach(cb=>cb.checked=val);
+  updateIntroCount();
+}
+
+function beginSession(){
+  const checked=[...document.querySelectorAll('#topic-checklist input:checked')].map(cb=>scenarios[+cb.value]);
+  if(checked.length===0)return;
+  activeScenarios=checked;
+  document.getElementById('intro-screen').classList.remove('show');
+  restartGame();
+  document.getElementById('game-area').style.display='block';
 }
 
 
@@ -696,6 +807,59 @@ function drawWitness(skin, hairStyle, hairColor, outfit, face, bodyWidth){
   return svg;
 }
 
+function drawBailiff(skin, hairStyle, hairColor, face){
+  const cx=120, cy=148;
+  const bw=54;
+  const bx=cx-bw/2;
+  // Uniform color — dark navy/khaki
+  const uniform='#1e2a3a';
+  const shirt='#2a3a4e';
+  const badge='#c9963a';
+  let svg='';
+
+  // Body / uniform jacket
+  svg+=`<rect x="${bx}" y="${cy+18}" width="${bw}" height="38" rx="4" fill="${uniform}" filter="url(#sh)"/>`;
+  // Shirt strip
+  svg+=`<rect x="${cx-5}" y="${cy+18}" width="10" height="26" fill="${shirt}" opacity="0.9"/>`;
+  // Tie / lanyard
+  svg+=`<polygon points="${cx},${cy+22} ${cx-3},${cy+40} ${cx},${cy+38} ${cx+3},${cy+40}" fill="#8a1818"/>`;
+  // Badge on chest
+  svg+=`<rect x="${cx+10}" y="${cy+24}" width="10" height="8" rx="1" fill="${badge}" opacity="0.9"/>`;
+  svg+=`<text x="${cx+15}" y="${cy+31}" text-anchor="middle" fill="#18080a" font-size="4" font-family="serif">★</text>`;
+  // Arms at sides
+  svg+=`<path d="M${bx+4} ${cy+24} Q${bx} ${cy+40} ${bx+6} ${cy+52}" stroke="${uniform}" stroke-width="12" fill="none" stroke-linecap="round"/>`;
+  svg+=`<path d="M${bx+bw-4} ${cy+24} Q${bx+bw} ${cy+40} ${bx+bw-6} ${cy+52}" stroke="${uniform}" stroke-width="12" fill="none" stroke-linecap="round"/>`;
+  // Hands
+  svg+=`<ellipse cx="${bx+6}" cy="${cy+53}" rx="6" ry="5" fill="${skin.base}"/>`;
+  svg+=`<ellipse cx="${bx+bw-6}" cy="${cy+53}" rx="6" ry="5" fill="${skin.base}"/>`;
+  // Head
+  svg+=`<ellipse cx="${cx}" cy="${cy}" rx="${face.rx}" ry="${face.ry}" fill="${skin.base}" filter="url(#sh)"/>`;
+  // Hair
+  svg+=hairStyles[hairStyle](cx, cy, hairColor);
+  // Eyes — looking toward center
+  svg+=`<ellipse cx="${cx+5}" cy="${cy-1}" rx="2.2" ry="2" fill="${skin.eyeCol}"/>`;
+  svg+=`<ellipse cx="${cx-5}" cy="${cy-1}" rx="2.2" ry="2" fill="${skin.eyeCol}"/>`;
+  svg+=`<ellipse cx="${cx+5.8}" cy="${cy-1}" rx="1" ry="1" fill="#050300"/>`;
+  svg+=`<ellipse cx="${cx-4.2}" cy="${cy-1}" rx="1" ry="1" fill="#050300"/>`;
+  // Brow — neutral/stern
+  svg+=`<path d="M${cx-9} ${cy-5} Q${cx-5} ${cy-6.5} ${cx-1} ${cy-5}" fill="none" stroke="${hairColor}" stroke-width="1.2"/>`;
+  svg+=`<path d="M${cx+1} ${cy-5} Q${cx+5} ${cy-6.5} ${cx+9} ${cy-5}" fill="none" stroke="${hairColor}" stroke-width="1.2"/>`;
+  // Nose
+  svg+=`<path d="M${cx-2} ${cy+2} Q${cx} ${cy+5} ${cx+2} ${cy+2}" fill="none" stroke="${skin.shadow}" stroke-width="0.8"/>`;
+  // Mouth — neutral
+  svg+=`<line x1="${cx-5}" y1="${cy+7}" x2="${cx+5}" y2="${cy+7}" stroke="${skin.shadow}" stroke-width="1.1"/>`;
+  // Legs
+  svg+=`<rect x="${cx-14}" y="${cy+54}" width="12" height="28" rx="3" fill="#141e2a"/>`;
+  svg+=`<rect x="${cx+2}" y="${cy+54}" width="12" height="28" rx="3" fill="#141e2a"/>`;
+  // Shoes
+  svg+=`<ellipse cx="${cx-8}" cy="${cy+83}" rx="9" ry="4" fill="#0e0e0e"/>`;
+  svg+=`<ellipse cx="${cx+8}" cy="${cy+83}" rx="9" ry="4" fill="#0e0e0e"/>`;
+  // "BAILIFF" label under feet
+  svg+=`<text x="${cx}" y="${cy+96}" text-anchor="middle" fill="#6a5020" font-family="'Special Elite',monospace" font-size="5.5" letter-spacing="1">BAILIFF</text>`;
+
+  return svg;
+}
+
 function randomizeCharacters(){
   // Pick random judge
   const jSkin   = pickRandom(skinTones);
@@ -714,10 +878,17 @@ function randomizeCharacters(){
   const wFace   = pickRandom(faceShapes);
   const wBody   = pickRandom(bodyWidths);
   document.getElementById('witness-group').innerHTML = drawWitness(wSkin, wHairS, wHairC, wOutfit, wFace, wBody);
+
+  // Pick random bailiff
+  const bSkin   = pickRandom(skinTones);
+  const bHairC  = pickRandom(hairColors);
+  const bHairS  = Math.floor(Math.random()*hairStyles.length);
+  const bFace   = pickRandom(faceShapes);
+  document.getElementById('bailiff-group').innerHTML = drawBailiff(bSkin, bHairS, bHairC, bFace);
 }
 
+buildIntroScreen();
 randomizeCharacters();
-restartGame();
 </script>
 </body>
 </html>
